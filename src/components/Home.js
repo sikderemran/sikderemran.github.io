@@ -1,0 +1,68 @@
+import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import axios from 'axios';
+import Nav from './Nav'
+const baseUrl='http://127.0.0.1:8000/api'
+const fileUrl='http://127.0.0.1:8000/'
+export default class Home extends Component {
+    state={
+        user:[]
+    }
+    componentDidMount=()=>{
+        document.title = 'Login';
+        this.home()
+    }
+    home=()=>{
+        const url = baseUrl+'/home'
+        axios({
+            url: url,
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then((response) => { 
+            console.log(response.data.data[0])
+            if(response.data.status==200){
+                this.setState({
+                    user:response.data.data[0].fields
+                })
+            }
+        }).catch((err) => {
+            console.log(err)
+         });
+    }
+    render() {
+        const 
+        {   
+            first_name,
+            last_name,
+            image,
+            designation
+            
+        }=this.state.user
+        return (
+            <section>
+                <Nav/>
+                <div className="home-section align-items-center">
+                    <div className="container">
+                        <div className="row align-items-center">
+                            <div className="home-text">
+                                <p>Hello, I'm</p>
+                                <h1>{first_name +' '+ last_name}</h1>
+                                <h2>{designation}</h2>
+                                <Link to="/about" className="btn">More About Me</Link>
+                                <Link to="/works" className="btn">Portfolio</Link>
+                            </div>
+                            <div className="home-img">
+                                <div className="img-box">
+                                    <img src={fileUrl+'image/'+image} alt="emran" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        )
+    }
+}
