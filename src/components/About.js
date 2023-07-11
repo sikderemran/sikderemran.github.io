@@ -7,8 +7,9 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faStackOverflow } from '@fortawesome/free-brands-svg-icons'
 import axios from 'axios';
 import Nav from './Nav'
-const baseUrl='http://127.0.0.1:8000/api'
-const fileUrl='http://127.0.0.1:8000/'
+import './constants/env';
+const baseUrl=global.config.data.path.basePath
+const fileUrl=global.config.data.path.filePath
 export default class About extends Component {
     state={
         user:[],

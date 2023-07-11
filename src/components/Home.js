@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import React, { Component } from 'react';
 import axios from 'axios';
 import Nav from './Nav'
-const baseUrl='http://127.0.0.1:8000/api'
-const fileUrl='http://127.0.0.1:8000/'
+import './constants/env';
+const baseUrl=global.config.data.path.basePath
+const fileUrl=global.config.data.path.filePath
 export default class Home extends Component {
     state={
         user:[]
