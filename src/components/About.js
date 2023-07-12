@@ -122,6 +122,7 @@ export default class About extends Component {
                                     </div>
                                 </div>
                                 <div className='tab-content' id="experience">
+                                    <div className="timeline">
                                     {
                                         this.state.experiences.map(experience=>{
                                             return <div className="timeline-item">
@@ -131,6 +132,7 @@ export default class About extends Component {
                                                     </div>
                                         })
                                     }
+                                    </div>
                                 </div>
                                 <div className='tab-content' id="contact">
                                     <div className="timeline">
