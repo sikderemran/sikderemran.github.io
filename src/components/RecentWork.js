@@ -51,7 +51,7 @@ export default class RecentWork extends Component {
                                 this.state.works.map(work=>{
                                     return <div className="portfolio-item">
                                                 <div className="portfolio-item-thumbnail">
-                                                    <img src="assets/img/profile-img.png" alt="portfolio image" />
+                                                    <img src={fileUrl+'image/'+work.fields.image} alt="emran" />
                                                 </div>
                                                 <h3 className="portfolio-item-title">{work.fields.title}</h3>
                                                 <div className='portfolio-popup-item'>
