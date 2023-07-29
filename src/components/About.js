@@ -19,7 +19,7 @@ export default class About extends Component {
         socials:[]
     }
     componentDidMount=()=>{
-        document.title = 'Login';
+        document.title = 'About';
         this.about()
     }
     about=()=>{
@@ -88,7 +88,7 @@ export default class About extends Component {
                         <div className="row">
                             <div className="about-img">
                                 <div className="img-box">
-                                    <img src={fileUrl+'image/'+image} alt="emran" />
+                                    <img src={fileUrl+'assets/'+image} alt="emran" />
                                 </div>
                             </div>
                             <div className="about-text">

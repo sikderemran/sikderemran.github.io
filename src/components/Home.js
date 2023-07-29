@@ -10,7 +10,7 @@ export default class Home extends Component {
         user:[]
     }
     componentDidMount=()=>{
-        document.title = 'Login';
+        document.title = 'Home';
         this.home()
     }
     home=()=>{
@@ -23,7 +23,6 @@ export default class Home extends Component {
                 'Content-Type': 'application/json'
             }
         }).then((response) => { 
-            console.log(response.data.data[0])
             if(response.data.status==200){
                 this.setState({
                     user:response.data.data[0].fields
@@ -57,7 +56,7 @@ export default class Home extends Component {
                             </div>
                             <div className="home-img">
                                 <div className="img-box">
-                                    <img src={fileUrl+'image/'+image} alt="emran" />
+                                    <img src={fileUrl+'assets/'+image} alt="emran" />
                                 </div>
                             </div>
                         </div>

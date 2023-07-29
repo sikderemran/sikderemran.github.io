@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import Nav from './Nav'
 export default class NotFound extends Component {
+    componentDidMount=()=>{
+        document.title = 'Not found';
+    }
     render() {
         return (
             <section>

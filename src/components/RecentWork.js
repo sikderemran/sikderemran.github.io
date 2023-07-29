@@ -13,7 +13,7 @@ export default class RecentWork extends Component {
         document.body.classList.toggle("hide-scrolling")
     }
     componentDidMount=()=>{
-        document.title = 'Login';
+        document.title = 'Portfolio';
         this.recentWork()
     }
     recentWork=()=>{
@@ -51,7 +51,7 @@ export default class RecentWork extends Component {
                                 this.state.works.map(work=>{
                                     return <div className="portfolio-item">
                                                 <div className="portfolio-item-thumbnail">
-                                                    <img src={fileUrl+'image/'+work.fields.image} alt="emran" />
+                                                    <img src={fileUrl+'assets/'+work.fields.image} alt="emran" />
                                                 </div>
                                                 <h3 className="portfolio-item-title">{work.fields.title}</h3>
                                                 <div className='portfolio-popup-item'>
@@ -62,7 +62,7 @@ export default class RecentWork extends Component {
                                                                 <div className="popup-header">
                                                                     <button onClick={(e) => this.toggleClass(e)} className="btn popup-close">x</button>
                                                                     <div className="popup-thumbnail">
-                                                                        <img src={fileUrl+'image/'+work.fields.image} alt="portfolio image" />
+                                                                        <img src={fileUrl+'assets/'+work.fields.image} alt="portfolio image" />
                                                                     </div>
                                                                     <h3>{work.fields.title}</h3>
                                                                 </div>
@@ -73,7 +73,7 @@ export default class RecentWork extends Component {
                                                                     <div className="general-info">
                                                                         <ul>
                                                                             <li>Technologies Used <span>{work.fields.tech_used}</span></li>
-                                                                            <li>View Live <span><a href={work.fields.link} target="blank">{work.fields.title}</a></span></li>
+                                                                            <li><span><a href={work.fields.link} target="blank">View Live</a></span></li>
                                                                         </ul>
                                                                     </div>
                                                                 </div>
