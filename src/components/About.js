@@ -8,6 +8,7 @@ import { faStackOverflow } from '@fortawesome/free-brands-svg-icons'
 import axios from 'axios';
 import Nav from './Nav'
 import './constants/env';
+import Loading from './Loading'
 const baseUrl=global.config.data.path.basePath
 const fileUrl=global.config.data.path.filePath
 export default class About extends Component {
@@ -16,13 +17,17 @@ export default class About extends Component {
         educations:[],
         experiences:[],
         skills:[],
-        socials:[]
+        socials:[],
+        isLoading:false
     }
     componentDidMount=()=>{
         document.title = 'About';
         this.about()
     }
     about=()=>{
+        this.setState({
+            isLoading:true
+        })
         const url = baseUrl+'/about'
         axios({
             url: url,
@@ -43,7 +48,11 @@ export default class About extends Component {
             }
         }).catch((err) => {
             console.log(err)
-         });
+        }).finally(()=>{
+            this.setState({
+                isLoading:false
+            })
+        })
     }
     toggleClass = (e) => {
         if (e.target.classList.contains('tab-item') && !e.target.classList.contains('active')) {
@@ -56,7 +65,7 @@ export default class About extends Component {
         }
     };
     downloadCv=(e)=>{
-        const url = fileUrl+'image/'+this.state.user.resume
+        const url = fileUrl+'assets/'+this.state.user.resume
         const link = document.createElement('a')
         link.href = url
         link.setAttribute('download', 'file.pdf')
@@ -75,6 +84,14 @@ export default class About extends Component {
             about
 
         }=this.state.user
+        
+        const {isLoading}= this.state
+
+        if (isLoading) {
+            return (
+                <Loading loading={isLoading} />
+            )
+        }
         return (
             <section>
                 <Nav />
@@ -102,6 +119,23 @@ export default class About extends Component {
                                     }
                                     
                                 </div>
+                                <h3>Social Account</h3>
+                                <div className="social-account">
+                                <p className="follow-me">
+                                                {
+                                                    this.state.socials.map(social=>{
+                                                        return <a className='social' href={social.fields.link} target={'blank'}>
+                                                                    <FontAwesomeIcon icon={
+                                                                        (social.fields.name=='linkedin'?faLinkedin
+                                                                        :social.fields.name=='whatsapp'?faWhatsapp
+                                                                        :social.fields.name=='github'?faGithub
+                                                                        :social.fields.name=='stackOverflow'?faStackOverflow:'')
+                                                                    } />
+                                                                </a>
+                                                    })
+                                                }
+                                            </p>
+                                </div>
                                 <div onClick={(e) => this.toggleClass(e)} className="about-tabs">
                                     <button className='tab-item active' data-target="#education">Education</button>
                                     <button className='tab-item' data-target="#experience">Experience</button>
@@ -127,7 +161,7 @@ export default class About extends Component {
                                         this.state.experiences.map(experience=>{
                                             return <div className="timeline-item">
                                                         <span className="date">{experience.fields.session}</span>
-                                                        <h4>{experience.fields.titlle}</h4>
+                                                        <h4>{experience.fields.title}</h4>
                                                         <p>{experience.fields.company}</p>
                                                     </div>
                                         })
@@ -163,7 +197,7 @@ export default class About extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <button onClick={(e)=>this.downloadCv(e)} className="btn" >download cv</button>
+                                <button onClick={(e)=>this.downloadCv(e)} className="btn" >download resume</button>
                             </div>
                         </div>
                     </div>

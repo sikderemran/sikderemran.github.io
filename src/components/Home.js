@@ -3,17 +3,23 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Nav from './Nav'
 import './constants/env';
+import Loading from './Loading'
+
 const baseUrl=global.config.data.path.basePath
 const fileUrl=global.config.data.path.filePath
 export default class Home extends Component {
     state={
-        user:[]
+        user:[],
+        isLoading:false
     }
     componentDidMount=()=>{
         document.title = 'Home';
         this.home()
     }
     home=()=>{
+        this.setState({
+            isLoading:true
+        })
         const url = baseUrl+'/home'
         axios({
             url: url,
@@ -29,8 +35,12 @@ export default class Home extends Component {
                 })
             }
         }).catch((err) => {
-            console.log(err)
-         });
+            
+        }).finally(()=>{
+            this.setState({
+                isLoading:false
+            })
+        })
     }
     render() {
         const 
@@ -39,8 +49,16 @@ export default class Home extends Component {
             last_name,
             image,
             designation
-            
         }=this.state.user
+
+        const {isLoading}= this.state
+
+        if (isLoading) {
+            return (
+                <Loading loading={isLoading} />
+            )
+        }
+
         return (
             <section>
                 <Nav/>
