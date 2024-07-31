@@ -90,7 +90,11 @@ export default class RecentWork extends Component {
                                                                     <div className="general-info">
                                                                         <ul>
                                                                             {/* <li>Technologies Used <span>{work.fields.tech_used}</span></li> */}
-                                                                            <li><span><a href={work.fields.link} target="blank">View Live</a></span></li>
+                                                                            {
+                                                                                work.fields.link!='#'&&
+                                                                                <li><span><a href={work.fields.link} target="blank">View Live</a></span></li>
+                                                                            }
+                                                                            
                                                                         </ul>
                                                                     </div>
                                                                 </div>
