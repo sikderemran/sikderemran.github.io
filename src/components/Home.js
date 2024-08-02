@@ -38,10 +38,10 @@ export default class Home extends Component {
                     isLoading:false
                 })
             }else{
-                location.reload()
+                window.location.reload()
             }
         }).catch((err) => {
-            location.reload()
+            window.location.reload()
         })
     }
     render() {
