@@ -33,13 +33,15 @@ export default class Home extends Component {
                 this.setState({
                     user:response.data.data[0].fields
                 })
+                console.log('Loading...')
+                this.setState({
+                    isLoading:false
+                })
+            }else{
+                location.reload()
             }
         }).catch((err) => {
-            
-        }).finally(()=>{
-            this.setState({
-                isLoading:false
-            })
+            location.reload()
         })
     }
     render() {
