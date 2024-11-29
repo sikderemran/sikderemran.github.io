@@ -326,7 +326,8 @@ section {
 }
 
 .about-text .skills,
-.about-text .social-account {
+.about-text .social-account,
+.follow-me {
     display: flex;
     flex-wrap: wrap;
 }
@@ -338,6 +339,10 @@ section {
     text-transform: capitalize;
     margin: 0 20px 20px 0;
     border-radius: 20px;
+}
+
+.follow-me{
+    font-weight: 500;
 }
 
 .about-tabs {
