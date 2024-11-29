@@ -129,7 +129,8 @@ export default class About extends Component {
                                                                         (social.fields.name=='linkedin'?faLinkedin
                                                                         :social.fields.name=='whatsapp'?faWhatsapp
                                                                         :social.fields.name=='github'?faGithub
-                                                                        :social.fields.name=='stackOverflow'?faStackOverflow:'')
+                                                                        :social.fields.name=='stackOverflow'?faStackOverflow
+                                                                        :social.fields.name)
                                                                     } />
                                                                 </a>
                                                     })
