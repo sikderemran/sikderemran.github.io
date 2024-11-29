@@ -121,7 +121,7 @@ export default class About extends Component {
                                 </div>
                                 <h3>Social Account</h3>
                                 <div className="social-account">
-                                <p className="follow-me">
+                                <p className="follow-me social-account">
                                                 {
                                                     this.state.socials.map(social=>{
                                                         return <a className='social' href={social.fields.link} target={'blank'}>
