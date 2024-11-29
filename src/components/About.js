@@ -125,13 +125,17 @@ export default class About extends Component {
                                                 {
                                                     this.state.socials.map(social=>{
                                                         return <a className='social' href={social.fields.link} target={'blank'}>
-                                                                    <FontAwesomeIcon icon={
-                                                                        (social.fields.name=='linkedin'?faLinkedin
-                                                                        :social.fields.name=='whatsapp'?faWhatsapp
-                                                                        :social.fields.name=='github'?faGithub
-                                                                        :social.fields.name=='stackOverflow'?faStackOverflow
-                                                                        :social.fields.name)
-                                                                    } />
+                                                                    {
+                                                                        social.fields.icon!='#'?
+                                                                        <FontAwesomeIcon icon={
+                                                                            (social.fields.name=='linkedin'?faLinkedin
+                                                                            :social.fields.name=='whatsapp'?faWhatsapp
+                                                                            :social.fields.name=='github'?faGithub
+                                                                            :social.fields.name=='stackOverflow'?faStackOverflow
+                                                                            :social.fields.name)
+                                                                        } />:
+                                                                        social.fields.name
+                                                                    }
                                                                 </a>
                                                     })
                                                 }
